@@ -91,12 +91,12 @@ file_name = "./d.mov"
 width, height, frame_count = getVideoDetails(file_name)
 jump =  frame_count//num_processes
 
-
 if __name__ == '__main__':
     t1 = time()
     multi()
     t2 = time()
     print("Общее время работы файла:", t2-t1)
+    print(frame_count)
 
 
 
