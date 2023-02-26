@@ -4,7 +4,7 @@ from threading import Thread
 from recognise import processing
 from cam import cam_start
 
-class CamParallel :
+class CamParallel:
 
     def __init__(self, stream_id=0):
         self.stream_id = stream_id 
@@ -44,31 +44,28 @@ class CamParallel :
         self.stopped = True 
 
 def startSegmentation():
-    webcam_stream = CamParallel(stream_id=0) 
+    webcam_stream = CamParallel(stream_id=1q)
     webcam_stream.start()
     cv.namedWindow("frame", cv.WINDOW_AUTOSIZE)
 
 
     p2 = Thread(target=cam_start, args=[webcam_stream])
-
     p2.start()
 
     num_frames_processed = 0 
     start = time.time()
-    while True :
-        if webcam_stream.stopped is True :
+    while True:
+        if webcam_stream.stopped is True:
             break
-        else :
+        else:
             frame = webcam_stream.read() 
 
         mask, res_frame = processing(frame)
 
         out = cv.addWeighted(mask, 0.5, res_frame, 0.5, 0)
-        
 
         num_frames_processed += 1 
-        cv.imshow('frame' , cv.resize(out, (960,960)))
-
+        cv.imshow('frame', cv.resize(out, (960, 960)))
 
         key = cv.waitKey(1)
         if key == ord('q'):

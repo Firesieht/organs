@@ -2,8 +2,9 @@ import onnxruntime
 import numpy as np
 import cv2 as cv
 import numba
+EP_list = ['CUDAExecutionProvider', 'CPUExecutionProvider']
 
-ort_session = onnxruntime.InferenceSession("model.onnx")
+ort_session = onnxruntime.InferenceSession("model.onnx", providers=EP_list)
 
 @numba.njit
 def assemblyFrame(ort_outputs, frame):

@@ -8,8 +8,7 @@ def cam_start(cap):
             if cap.stopped == True:
                 break
             frame = cap.read()
-            print(len(frame))
-           
+            cv.imshow("original", frame)
 
             if cv.waitKey(1) == ord('q'):
                 cap.stop()
